@@ -1,17 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestroHub.Domain.Entities;
 
-namespace RestroHub.Infrastrcture.Persistence;
+namespace RestroHub.Infrastructure.Persistence;
 
-internal class AppDbContext : DbContext
+internal class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     internal DbSet<Restaurant> Restaurants { get; set; }
     internal DbSet<Dish> Dishes { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Server=.;Database=RestoHubDb;Trusted_Connection=true;TrustServerCertificate=True");
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
