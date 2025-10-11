@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestroHub.Infrastrcture.Persistence;
+using RestroHub.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace RestroHub.Infrastrcture.Migrations
+namespace RestroHub.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot

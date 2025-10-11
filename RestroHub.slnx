@@ -2,5 +2,5 @@
   <Project Path="RestroHub.API/RestroHub.API.csproj" />
   <Project Path="RestroHub.Application/RestroHub.Application.csproj" />
   <Project Path="RestroHub.Domain/RestroHub.Domain.csproj" />
-  <Project Path="RestroHub.Infrastrcture/RestroHub.Infrastrcture.csproj" />
+  <Project Path="RestroHub.Infrastrcture/RestroHub.Infrastructure.csproj" />
 </Solution>
