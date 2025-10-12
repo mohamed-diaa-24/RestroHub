@@ -1,11 +1,14 @@
 using RestroHub.Infrastructure.Extensions;
 using RestroHub.Infrastructure.Seeders;
+using RestroHub.Application.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
+
 var app = builder.Build();
 
 
