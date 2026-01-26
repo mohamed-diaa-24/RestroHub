@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestroHub.Application.Dtos.Restaurants;
+using RestroHub.Application.Restaurants.Dto;
 using RestroHub.Application.Services;
 
 namespace RestroHub.API.Controllers

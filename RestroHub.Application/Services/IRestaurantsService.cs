@@ -1,4 +1,4 @@
-﻿using RestroHub.Application.Dtos.Restaurants;
+﻿using RestroHub.Application.Restaurants.Dto;
 using RestroHub.Domain.Entities;
 using System;
 using System.Collections.Generic;

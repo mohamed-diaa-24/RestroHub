@@ -10,6 +10,7 @@
         <ProjectReference Include="..\RestroHub.Domain\RestroHub.Domain.csproj" />
       </ItemGroup>
     <ItemGroup>
+	    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
 	    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using RestroHub.Domain.Entities;
 
-namespace RestroHub.Application.Dtos.Restaurants
+namespace RestroHub.Application.Restaurants.Dto
 {
     public class CreateRestaurantDto
     {

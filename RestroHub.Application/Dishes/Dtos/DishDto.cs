@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestroHub.Application.Dtos.Dishes;
+namespace RestroHub.Application.Dishes.Dtos;
 
 public class DishDto
 {

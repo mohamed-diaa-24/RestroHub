@@ -1,4 +1,4 @@
-﻿using RestroHub.Application.Dtos.Dishes;
+﻿using RestroHub.Application.Dishes.Dtos;
 using RestroHub.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestroHub.Application.Dtos.Restaurants;
+namespace RestroHub.Application.Restaurants.Dto;
 
 
 public class RestaurantDto

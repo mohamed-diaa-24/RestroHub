@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using RestroHub.Application.Dtos.Restaurants;
+using RestroHub.Application.Restaurants.Dto;
 using RestroHub.Domain.Repositories;
 
 namespace RestroHub.Application.Services;
