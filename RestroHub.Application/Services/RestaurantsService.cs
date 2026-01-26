@@ -8,6 +8,7 @@ namespace RestroHub.Application.Services;
 internal class RestaurantsService(IRestaurantsRepository restaurantsRepository,
     ILogger<RestaurantsService> logger) : IRestaurantsService
 {
+ 
     public async Task<IEnumerable<RestaurantDto>> GetAllRestaurants()
     {
         logger.LogInformation("Getting all restaurants");
@@ -27,4 +28,12 @@ internal class RestaurantsService(IRestaurantsRepository restaurantsRepository,
         return restaurantDto;
 
     }
+    public async Task<int> Create(CreateRestaurantDto dto)
+    {
+        logger.LogInformation($"Creating a new restaurant");
+        var restaurnat = CreateRestaurantDto.ToEntity(dto);
+        int id = await restaurantsRepository.Create(restaurnat);
+        return id;
+    }
+
 }

@@ -2,17 +2,12 @@
 using RestroHub.Domain.Entities;
 using RestroHub.Domain.Repositories;
 using RestroHub.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestroHub.Infrastructure.Repositories
 {
     internal class RestaurantsRepository(AppDbContext dbContext)
         :IRestaurantsRepository
-    {
+    {  
         public async Task<IEnumerable<Restaurant>> GetAllAsync()
         {
             var restaurants = await dbContext.Restaurants.ToListAsync();
@@ -27,5 +22,13 @@ namespace RestroHub.Infrastructure.Repositories
 
             return restaurant;
         }
+
+        public async Task<int> Create(Restaurant entity)
+        {
+            dbContext.Restaurants.Add(entity);
+            await dbContext.SaveChangesAsync();
+            return entity.Id;
+        }
+
     }
 }

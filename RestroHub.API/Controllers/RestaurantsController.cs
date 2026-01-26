@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestroHub.Application.Dtos.Restaurants;
 using RestroHub.Application.Services;
 
 namespace RestroHub.API.Controllers
@@ -22,6 +23,12 @@ namespace RestroHub.API.Controllers
                 return NotFound();
 
             return Ok(restaurant);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody]CreateRestaurantDto createRestaurantDto)
+        {
+            int id = await restaurantsService.Create(createRestaurantDto);
+            return CreatedAtAction(nameof(GetById), new {id},null);
         }
     }
 }

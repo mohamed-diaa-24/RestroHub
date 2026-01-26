@@ -1,5 +1,0 @@
-﻿@RestroHub.API_HostAddress = https://localhost:7055
-
-GET {{RestroHub.API_HostAddress}}/api/restaurants
-
-###

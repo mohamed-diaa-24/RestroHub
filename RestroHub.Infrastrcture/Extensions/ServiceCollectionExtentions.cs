@@ -8,7 +8,7 @@ using RestroHub.Infrastructure.Seeders;
 
 namespace RestroHub.Infrastructure.Extensions;
 
-public static class ServiceCollectionExtentions
+public static class ServiceCollectionExtensions
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
