@@ -1,10 +1,5 @@
 ﻿using RestroHub.Domain.Entities;
 using RestroHub.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestroHub.Infrastructure.Seeders
 {
