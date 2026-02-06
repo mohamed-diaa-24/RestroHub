@@ -1,4 +1,5 @@
 ﻿using RestroHub.Application.Restaurants.Commands.CreateRestaurant;
+using RestroHub.Application.Restaurants.Commands.UpdateRestaurant;
 using RestroHub.Domain.Entities;
 
 namespace RestroHub.Application.Restaurants;
@@ -27,5 +28,12 @@ public static class RestaurantExtensions
             ContactEmail = command.ContactEmail,
             ContactNumber = command.ContactNumber,
         }; 
+    }  
+    
+    public static void MapTo(this UpdateRestaurantCommand command,Restaurant restaurant)
+    {
+        restaurant.Name = command.Name;
+        restaurant.Description = command.Description;
+        restaurant.HasDelivery = command.HasDelivery;
     }  
 }

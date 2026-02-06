@@ -30,5 +30,12 @@ namespace RestroHub.Infrastructure.Repositories
             return entity.Id;
         }
 
+        public async Task DeleteAsync(Restaurant entity)
+        {
+            dbContext.Restaurants.Remove(entity);
+            await  dbContext.SaveChangesAsync();
+        }
+
+        public async Task<int> SaveChangesAsync() =>  await dbContext.SaveChangesAsync();
     }
 }
