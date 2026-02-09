@@ -1,3 +1,4 @@
+using RestroHub.API.Middlewares;
 using RestroHub.Infrastructure.Extensions;
 using RestroHub.Infrastructure.Seeders;
 using RestroHub.Application.Extensions;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddApplication(builder.Configuration);
@@ -21,17 +23,19 @@ builder.Host.UseSerilog((context, configuration) =>
 
 var app = builder.Build();
 
+await SeedData(app); 
 
-var scope = app.Services.CreateScope();
-var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
+// Configure the http request pipeline
 
-await seeder.Seed();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 
@@ -40,3 +44,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+async Task SeedData(WebApplication webApplication)
+{
+    var scope = webApplication.Services.CreateScope();
+    var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
+
+    await seeder.Seed();
+}
