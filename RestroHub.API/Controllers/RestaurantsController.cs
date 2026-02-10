@@ -27,9 +27,6 @@ namespace RestroHub.API.Controllers
         {
             var restaurant = await sender.Send(new GetRestaurantByIdQuery(id));
             
-            if (restaurant is null)
-                return NotFound();
-
             return Ok(restaurant);
         }
         [HttpPost]
@@ -48,12 +45,9 @@ namespace RestroHub.API.Controllers
         
         public async Task<IActionResult> DeleteRestaurant([FromRoute] int id)
         {
-            var isDeleted = await sender.Send(new DeleteRestaurantCommand(id));
-            
-            if (isDeleted)
-                return NoContent();
-
-            return NotFound();
+          await sender.Send(new DeleteRestaurantCommand(id));
+          
+          return NoContent();
         }
         
         [HttpPatch("{id}")]
@@ -62,12 +56,10 @@ namespace RestroHub.API.Controllers
         public async Task<IActionResult> UpdateRestaurant([FromRoute] int id,UpdateRestaurantCommand command)
         {
             command.Id = id;
-            var isUpdated = await sender.Send(command);
             
-            if (isUpdated)
-                return NoContent();
-
-            return NotFound();
+            await sender.Send(command);
+            
+            return NoContent();
         }
     }
 }

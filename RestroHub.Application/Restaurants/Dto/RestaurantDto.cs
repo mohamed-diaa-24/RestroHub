@@ -22,10 +22,9 @@ public class RestaurantDto
 
     public List<DishDto> Dishes { get; set; } = [];
 
-    public static RestaurantDto? FromEntity(Restaurant? restaurant)
+    public static RestaurantDto FromEntity(Restaurant restaurant)
     {
-        if (restaurant == null) return null;
-
+        
         return new RestaurantDto()
         {
             Category = restaurant.Category,

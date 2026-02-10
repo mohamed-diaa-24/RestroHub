@@ -1,4 +1,6 @@
-﻿namespace RestroHub.API.Middlewares;
+﻿using RestroHub.Domain.Exceptions;
+
+namespace RestroHub.API.Middlewares;
 
 public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : IMiddleware
 {
@@ -7,6 +9,14 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
         try
         {
             await next(context);
+        }
+        catch (NotFoundException notFound)
+        {
+            context.Response.StatusCode = StatusCodes.Status404NotFound;
+            
+            await context.Response.WriteAsync(notFound.Message);
+            
+            logger.LogWarning(notFound.Message);
         }
         catch (Exception ex)
         {
