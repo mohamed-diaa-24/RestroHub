@@ -1,19 +1,21 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.Extensions.Logging;
+using RestroHub.Domain.Entities;
 using RestroHub.Domain.Repositories;
 
 namespace RestroHub.Application.Restaurants.Commands.CreateRestaurant;
 
 public class CreateRestaurantCommandHandler(ILogger<CreateRestaurantCommandHandler> logger,
-   IRestaurantsRepository restaurantsRepository) : IRequestHandler<CreateRestaurantCommand,int>
+   IRestaurantsRepository restaurantsRepository,IMapper mapper) : IRequestHandler<CreateRestaurantCommand,int>
 {
     public async Task<int> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Creating a new restaurant {@Resaturant}",request);
+        logger.LogInformation("Creating a new restaurant {@Restaurant}",request);
+
+        var restaurant = mapper.Map<Restaurant>(request); 
         
-        var restaurnat = request.ToEntity();
-        
-        int id = await restaurantsRepository.Create(restaurnat);
+        int id = await restaurantsRepository.Create(restaurant);
         
         return id;
     }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using RestroHub.Domain.Entities;
 using RestroHub.Domain.Exceptions;
@@ -7,7 +8,7 @@ using RestroHub.Domain.Repositories;
 namespace RestroHub.Application.Restaurants.Commands.UpdateRestaurant;
 
 public class UpdateRestaurantCommandHandler(ILogger<UpdateRestaurantCommandHandler> logger,
-    IRestaurantsRepository restaurantsRepository) : IRequestHandler<UpdateRestaurantCommand>
+    IRestaurantsRepository restaurantsRepository,IMapper mapper) : IRequestHandler<UpdateRestaurantCommand>
 {
     public async Task Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
     {
@@ -17,10 +18,8 @@ public class UpdateRestaurantCommandHandler(ILogger<UpdateRestaurantCommandHandl
 
         if (restaurant is null)
             throw new NotFoundException(nameof(Restaurant),request.Id.ToString());
-
-
-
-        request.MapTo(restaurant);
+        
+        mapper.Map(request, restaurant);
         
         await restaurantsRepository.SaveChangesAsync();
     }
